@@ -39,3 +39,130 @@ api.createOrder(cart, function() {
 });
 
 //We are blindly trusting createOrder api, if any bugs of if createOrder api is not written properly payment system will not work or works unappropriately causing multiple payments, or payment success wothout debiting any money, etc.
+
+
+//Promises
+let p = new Promise((resolve, reject) => {
+    let a = 1+2;
+
+    if(a == 2) {
+        resolve("Success");
+    }else {
+        reject("Failed");
+    }
+});
+
+
+p.then((message) => {
+    console.log("Then : ", message);
+})
+.catch((message) => {
+    console.log("Catch : ", message);
+});
+
+
+
+//Example
+function gamePlayCallback(callback, errorCallback) {
+    let userLeft = false
+    let userNotPlaying = false
+  
+    if (userLeft) {
+      errorCallback({
+        name: 'User Left', 
+        message: ':('
+      })
+    } else if (userNotPlaying) {
+      errorCallback({
+        name: 'Player1',
+        message: 'Message for user not playing game' 
+      })
+    } else {
+      callback('User not left and playing...')
+    }
+  }
+
+  console.log("Reached here...");
+  //Calling gamePlayCallback
+  gamePlayCallback(message => {
+    console.log(message);
+  }, error => {
+    console.log("name : ", error.name);
+    console.log("message : ", error.message);
+  });
+
+
+
+  function gamePlayPromise() {
+    let userLeft = false
+    let userNotPlaying = false
+    return new Promise((resolve, reject) => {
+      if (userLeft) {
+        reject({
+          name: 'User Left', 
+          message: ':('
+        })
+      } else if (userNotPlaying) {
+        reject({
+          name: 'Player1',
+          message: 'User not playing game' 
+        })
+      } else {
+        resolve('User playing game and not left')
+      }
+    })
+  }
+  
+  gamePlayPromise()
+    .then((message) => {
+        console.log("Promise message : ", message)
+    })
+    .catch((error)=> {
+        console.log("name : " + error.name + "and" + "message : " + error.message);
+    });
+
+
+//   watchTutorialCallback(message => {
+//     console.log(message)
+//   }, error => {
+//     console.log(error.name + ' ' + error.message)
+//   })
+  
+//   watchTutorialPromise().then(message => {
+//     console.log(message)
+//   }).catch(error => {
+//     console.log(error.name + ' ' + error.message)
+//   })
+
+
+  
+  const gamePlayOne = new Promise((resolve, reject) => {
+    reject('Playing game 1');
+  })
+  
+  const gamePlayTwo = new Promise((resolve, reject) => {
+    resolve('Playing game 2');
+  });
+  
+  const gamePlayThree = new Promise((resolve, reject) => {
+    resolve('Playing game 3');
+  })
+  
+
+  //It will wait for every promise to be
+  Promise.all([
+    gamePlayOne,
+    gamePlayTwo,
+    gamePlayThree
+  ]).then(messages => {
+    console.log("Messages from multiple promises",messages);
+  })
+  
+  //It will return as soon as the first one is completed instead of waiting for all to complete
+  Promise.race([
+    gamePlayOne,
+    gamePlayTwo,
+    gamePlayThree
+  ]).then(messages => {
+    console.log("Messages from multiple promises using race",messages);
+  })
