@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 35vw;
+    height: 35vh;
+    margin: auto;
+    background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    width: 30%;
+    height: 30%;
+    border: 2px solid black;
+    background-color: white;
+    text-align: center;
+
+    /* transition-property: background-color; */
+    /* transition-duration: 3s; */
+    /* transition-timing-function: ease-in; Starts slowly */
+    /* transition-timing-function: ease-out; Ends slowly */
+    /* transition-timing-function: ease-in-out; starts slowly and ends slowly */
+    /* transition-delay: 2s; */
+
+    /*Shorthand property*/
+    /* transition: property duration timing-function delay; */
+    /* transition: background-color 3s ease-in 2s; */
+    /* transition: all 3s ease-in 2s; transition-property:all, is used to apply transition to all the properties */
+    transition: all 3s ease-in 2s;
+}
+
+.box:hover {
+    background-color: red;
+    border-radius: 100px;
+    font-size: 60px;
+}
+
+.box:active {
+    width: 100%;
+    height: 100%;
+}

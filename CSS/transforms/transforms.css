@@ -1,0 +1,44 @@
+* {
+    margin : 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: antiquewhite;
+}
+
+.box {
+    width: 400px;
+    height: 400px;
+    background-color: aqua;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* transform: rotate(40deg); */
+    /* transition: transform 3s; */
+    transition: all 2s ease-in-out;
+
+}
+
+.box:hover {
+    /* transform: rotate(45deg); */
+    /* transform: rotate(360deg); */
+    /* transform: skew(40deg); */
+    /* transform: skew(-40deg); */
+    /* transform: scale(2); */
+    /* transform: scale(-2); */
+    /* transform: translateX(125px); */
+    /* transform: translateX(-125px); */
+    /* transform: translateY(125px); */
+    /* transform: translateY(-125px); */
+    /* transform: translate(125px,125px); translate(x-axis,y-axis) */
+    transform: translate(-125px,-125px);
+
+}

@@ -1,0 +1,41 @@
+* {
+
+    box-sizing: border-box;
+
+}
+
+
+.container {
+    border: 2px solid black;
+    width: 900px;
+    margin : auto;
+}
+
+.item {
+    border: 2px solid grey;
+    margin: 5px;
+    padding: 5px;
+    background-color: antiquewhite;
+}
+
+
+#fruits {
+    width: 48%;
+    float : left;
+}
+
+#computers {
+    width: 48%;
+    float: right;
+}
+
+
+#stationary {
+    width: 100%;
+    /* float : right; */
+    clear: left;
+}
+
+p {
+    text-align:justify;
+}

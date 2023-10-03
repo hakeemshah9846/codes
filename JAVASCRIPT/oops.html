@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OOps</title>
+  </head>
+  <body>
+    <script>
+      // function printMinYob(...args) {
+      //     let arr = args.map((e) => {
+      //         return e.yob;
+      //     });
+      //     console.log(Math.min(...arr));
+      // }
+
+      class Student {
+        name;
+        yob;
+        width;
+        height;
+
+        constructor(name, yob) {
+          this.name = name;
+          this.yob = yob;
+        }
+
+        getAge() {
+          return new Date().getFullYear() - this.yob;
+        }
+
+        getName() {
+          return this.name;
+        }
+
+        static printMinYob(...args) {
+          let arr = args.map((e) => {
+            return e.yob;
+          });
+          console.log(Math.min(...arr));
+        }
+
+        // setHeight(height) {
+        //     this.height = height
+        // }
+
+        // setWidth(width) {
+        //     this.width = width;
+        // }
+
+        set height(height) {
+          this.height = height;
+        }
+
+        set width(width) {
+          this.width = width;
+        }
+      }
+
+      // Student.printMinYob = function(...args) {
+      //         let arr = args.map((e) => {
+      //             return e.yob;
+      //         });
+      //         console.log(Math.min(...arr));
+      //     }
+
+      let student1 = new Student("Alen", 2000);
+      let student2 = new Student("Daniel", 1999);
+
+      // student1.setHeight(200);
+      // student1.setWidth(100);
+
+      student1.height = 200;
+
+      //Using dot operator you can add any key values to the objects
+      // student1.width = 100;
+      // student1.height = 200;
+      // student1.hri_width = 300;
+
+      console.log("Student1 : ", student1);
+      console.log("Student2 : ", student2);
+
+      console.log("Student1.name : ", student1.name);
+      console.log("Student1.age : ", student1.getAge());
+      console.log("student1.width : ", student1.width);
+      console.log("student1.height : ", student1.height);
+
+      Student.printMinYob(student1, student2);
+
+      //Getters and setters
+      class Button {
+        button;
+
+        constructor(name) {
+          this.button = document.createElement("button");
+          this.button.innerHTML = name;
+          document.body.appendChild(this.button);
+        }
+
+        set width(width) {
+          this.button.style.width = width + "px";
+        }
+
+        set height(height) {
+          this.button.style.height = height + "px";
+        }
+
+        // getHeight() {
+        //     return this.button.style.height;
+        // }
+
+        // getWidth() {
+        //     return this.button.style.width;
+        // }
+
+        get height() {
+          return this.button.style.height;
+        }
+
+        get width() {
+          return parseInt(this.button.style.width);
+        }
+      }
+
+      let myButton = new Button("Click here");
+      console.log("myButton : ", myButton);
+      myButton.height = 100;
+      myButton.width = 200;
+      // console.log(myButton.getHeight());
+      // console.log(myButton.getWidth());
+      console.log(myButton.height);
+      console.log(myButton.width);
+
+      //INHERITANCE
+      class Button1 {
+        constructor(name) {
+          this.button = document.createElement("button");
+          this.button.innerHTML = name;
+          document.body.appendChild(this.button);
+        }
+
+        onClick(fn) {
+          this.button.onclick = fn;
+          };
+        }
+      
+
+      let mybtn = new Button1("click me");
+      mybtn.onClick(function () {
+        console.log("Button clicked...");
+      });
+
+
+
+
+
+
+      class OrangeButton1 {
+        constructor(name) {
+          this.button = document.createElement("button");
+          this.button.innerHTML = name;
+          document.body.appendChild(this.button);
+        }
+
+        onClick(fn) {
+          this.button.onclick = function () {
+            this.button.style.background = "orange";
+            fn();
+          }.bind(this);
+        }
+      }
+
+      let myOrangeBtn = new OrangeButton1("orange button");
+      myOrangeBtn.onClick(function () {
+        console.log("Orange button clicked...");
+      })
+
+
+
+
+
+
+      class OrangeButton extends Button1 {
+
+        constructor (name) {
+            super(name);
+            // this.button = document.createElement('button');
+            // this.button.innerHTML = "From inherited orange button class";
+            // document.body.appendChild(this.button);
+        }
+
+
+        onClick(fn) {
+          this.button.onclick = function () {
+            this.button.style.background = "orange";
+            fn();
+          }.bind(this);
+        }
+
+      }
+
+      let myorangebtn1 = new OrangeButton("inherited button");
+      console.log("myOrangebtn1 : ", myorangebtn1);
+      myorangebtn1.onClick(function () {
+        console.log("Inherited orange button clicked");
+      })
+
+
+
+
+
+
+      //PROTOTYPES
+     console.log(typeof(OrangeButton));
+
+     //We can user any function as like a constructor
+     function MyButton(name) {
+        this.button = document.createElement('button');
+        this.button.innerHTML = name;
+        document.body.appendChild(this.button);
+   
+     }
+
+     var MyButtonObj = new MyButton("MyButton");
+     
+     //To add a function to any constructor function use prototype
+     MyButton.prototype.onClick = function(fn) {
+         this.button.onclick = fn;
+        }
+
+        console.log("MyButtonObj : ", MyButtonObj);
+        console.dir(MyButton);
+        console.dir(MyButtonObj);
+
+     MyButtonObj.onClick(function () {
+        console.log("MyButtonObj clicked...");
+     });
+
+     //Inheritance using prototypes
+     function MyOrangeButton111(name) {
+      MyButton.call(this,name);
+     }
+
+     //Assigning functions from parent's prototype to inherited function's prototype
+     console.log("Object.create(MyButton.prototype) : ", Object.create(MyButton.prototype));
+     MyOrangeButton111.prototype = Object.create(MyButton.prototype);
+
+     //To modify a parent's function in child function
+     MyOrangeButton111.prototype.onClick = function(fn) {
+      MyButton.prototype.onClick.call(this, () => {
+        this.button.style.background = "orange";
+        fn();
+      })
+     }
+
+
+     let MyOrangeButton111Obj = new MyOrangeButton111("OrangeButton111");
+
+     console.dir(MyOrangeButton111)
+     console.dir(MyOrangeButton111Obj);
+
+     MyOrangeButton111Obj.onClick(function () {
+      console.log("My orange Button 111 clicked");
+     });
+
+
+
+
+
+
+
+    </script>
+  </body>
+</html>
