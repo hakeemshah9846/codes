@@ -28,7 +28,7 @@ console.log("Javascript regular expressions...");
 
 const str1 = "The cat is white";
 const str2 = "rat eats fish";
-const str3 = "Is it ok fishes";
+const str3 = "Is it ok fishes ";
 const str4 = `
 good meat
 is always good
@@ -48,28 +48,124 @@ is always good
 // console.log("Result3 : ", result4);
 
 
+
 //Form validation task
 // Allowed only
 // characters A - Z
 // Numbers 0 - 9
 // Underscore _
 // Starts only with characters
-const regexp = /^[a-z][a-z 0-9 _]*$/i;
+// const regexpForm = /^[a-z][a-z 0-9 _]*$/i;
+
+// function onChange(arg) {
+//     const result = checkResult(arg.value);
+//     let label = document.getElementById("input-label");
+//     if(result) {
+
+//         label.innerHTML = result;
+//     }else {
+//         label.innerHTML = '';
+//     }
+
+// }
+
+
+// function checkResult(value) {
+
+//     const result = regexpForm.test(value);
+//     if(result) {
+//         return '';
+//     }else {
+//         return 'Invalid string';
+//     }
+// }
+
+
+
+
+
+
+// const regexp = /[kjm]/i; //If there is k or j or m then it will be true
+// const regexp = /[^kjm]/i; //ir there is no k or j or m then it will be true
+// const regexp = /[H+]/i; //atleast  1 'H' is required
+// const regexp = /O$/i; //String ends with 'o'
+
+// const regexp = /O?$/i; //Ending 'o' can be 0 or 1 or more
+// const regexp = /O+$/i; //Atleast  1 'O' is required in string end
+
+
+// const regexp = /L{2}o$/i; //'o' should be exactly after 2 L's
+// const regexp = /L{2,4}o$/i; //'o' should be exactly after between 2 to 4 L's
+// const regexp = /HeL{2,4}o$/i; //'o' should be exactly after between 2 to 4 L's and exactly after 2 to 4 L's and 'o' is required
+// const regexp = /HeL{2,}o$/i; //2 or more 'L' is required
+
+// \- escape character
+// const regexp = /\d/i; //if there is any digits 0 to 9, it will be true, else it will be false
+// const regexp = /\D/i; //if there is any non-digits ie letters or charactors, if there is only digits it will be false
+//Suppose we want to match '.' in a string, since '.' has a special meaning everything will be matched and will be true
+// const regexp = /./i; //if there is '.' or anything it will match
+const regexp = /\./i; //if there is any  '.' it will match, else it will be false
+//So '\'(backslash) is used to excape special charactors
+
+
+const str = "Hello";
+
+
+
+const result = regexp.test(str);
+console.log("Result : ", result);
+
+
+
+//Date validation
+
+
+// const regexpForDate = /^\d{1,2}-\d{1,2}-\d{4}$/;
+// |- or case
+const regexpForDate = /^([012]?\d|3[01])-([0]\d|[1][012])-(\d{4})$/i; //In first group- If first character is '0' or '1' or '2' then second character can be any digits(0-9) or if first character is '3' then second character should be '0' or '1'
+//In the second group if the first character is '0' then second character can be any digits(0-9) or if first character is '1' then second character should be '0' or '1' or '2'
+//In the last date part four digits is allowed
+
 
 function onChange(arg) {
     const result = checkResult(arg.value);
     let label = document.getElementById("input-label");
-    label.innerHTML = result;
+    if(result) {
+
+        label.innerHTML = result;
+    }else {
+        label.innerHTML = '';
+    }
 
 }
-
 
 function checkResult(value) {
+    //() - capturing group(gets the characters as array elements in match function), ?: - non capturing group(will not get the characters as array elements in match function), /^(?:[012]?\d|3[01])-([0]\d|[1][012])-(\d{4})$/i
 
-    const result = regexp.test(value);
-    if(result) {
-        return '';
-    }else {
-        return 'Invalid string';
-    }
+    const result = value.match(regexpForDate);
+    console.log("Result : ", result);
+   if(result === null) {
+    return 'Invalid String';
+   }else {
+    return '';
+   }
 }
+
+
+
+
+//String replacing using regular expressions
+let str5 = "a-b-c";
+
+
+let str6 = str5.replace(/-/,':'); // Replaces '-' with ':', only replaces the first match
+console.log("str6 : ", str6);
+
+let str7 = str5.replace(/-/g,':'); // Replaces '-' with ':', replaces all the matches
+console.log("str7 : ", str7);
+
+
+let dateStr = '12-10-04';
+
+let dateStrReplace = dateStr.replace(/(\d{2})$/,'20$1');// '$1' will get the value of first capture group ie within '()' brackets.
+console.log("dateStrReplace", dateStrReplace);
