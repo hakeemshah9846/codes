@@ -104,16 +104,16 @@ is always good
 // const regexp = /\D/i; //if there is any non-digits ie letters or charactors, if there is only digits it will be false
 //Suppose we want to match '.' in a string, since '.' has a special meaning everything will be matched and will be true
 // const regexp = /./i; //if there is '.' or anything it will match
-const regexp = /\./i; //if there is any  '.' it will match, else it will be false
+// const regexp = /\./i; //if there is any  '.' it will match, else it will be false
 //So '\'(backslash) is used to excape special charactors
 
 
-const str = "Hello";
+// const str = "Hello";
 
 
 
-const result = regexp.test(str);
-console.log("Result : ", result);
+// const result = regexp.test(str);
+// console.log("Result : ", result);
 
 
 
@@ -122,50 +122,83 @@ console.log("Result : ", result);
 
 // const regexpForDate = /^\d{1,2}-\d{1,2}-\d{4}$/;
 // |- or case
-const regexpForDate = /^([012]?\d|3[01])-([0]\d|[1][012])-(\d{4})$/i; //In first group- If first character is '0' or '1' or '2' then second character can be any digits(0-9) or if first character is '3' then second character should be '0' or '1'
+// const regexpForDate = /^([012]?\d|3[01])-([0]\d|[1][012])-(\d{4})$/i; //In first group- If first character is '0' or '1' or '2' then second character can be any digits(0-9) or if first character is '3' then second character should be '0' or '1'
 //In the second group if the first character is '0' then second character can be any digits(0-9) or if first character is '1' then second character should be '0' or '1' or '2'
 //In the last date part four digits is allowed
 
 
-function onChange(arg) {
-    const result = checkResult(arg.value);
-    let label = document.getElementById("input-label");
-    if(result) {
+// function onChange(arg) {
+//     const result = checkResult(arg.value);
+//     let label = document.getElementById("input-label");
+//     if(result) {
 
-        label.innerHTML = result;
-    }else {
-        label.innerHTML = '';
-    }
+//         label.innerHTML = result;
+//     }else {
+//         label.innerHTML = '';
+//     }
 
-}
+// }
 
-function checkResult(value) {
-    //() - capturing group(gets the characters as array elements in match function), ?: - non capturing group(will not get the characters as array elements in match function), /^(?:[012]?\d|3[01])-([0]\d|[1][012])-(\d{4})$/i
+// function checkResult(value) {
+//     //() - capturing group(gets the characters as array elements in match function), ?: - non capturing group(will not get the characters as array elements in match function), /^(?:[012]?\d|3[01])-([0]\d|[1][012])-(\d{4})$/i
 
-    const result = value.match(regexpForDate);
-    console.log("Result : ", result);
-   if(result === null) {
-    return 'Invalid String';
-   }else {
-    return '';
-   }
-}
+//     const result = value.match(regexpForDate); //If it matches it will return an object with capture groups '()' as array elements
+//     console.log("Result : ", result);
+//    if(result === null) {
+//     return 'Invalid String';
+//    }else {
+//     return '';
+//    }
+// }
 
 
 
 
 //String replacing using regular expressions
-let str5 = "a-b-c";
+// let str5 = "a-b-c";
 
 
-let str6 = str5.replace(/-/,':'); // Replaces '-' with ':', only replaces the first match
-console.log("str6 : ", str6);
+// let str6 = str5.replace(/-/,':'); // Replaces '-' with ':', only replaces the first match
+// console.log("str6 : ", str6);
 
-let str7 = str5.replace(/-/g,':'); // Replaces '-' with ':', replaces all the matches
-console.log("str7 : ", str7);
+// let str7 = str5.replace(/-/g,':'); // Replaces '-' with ':', replaces all the matches
+// console.log("str7 : ", str7);
 
 
-let dateStr = '12-10-04';
+// let dateStr = '12-10-04';
 
-let dateStrReplace = dateStr.replace(/(\d{2})$/,'20$1');// '$1' will get the value of first capture group ie within '()' brackets.
-console.log("dateStrReplace", dateStrReplace);
+// let dateStrReplace = dateStr.replace(/(\d{2})$/,'20$1');//gets '04' from dateStr and replace it as '2004', '$1' will get the value of first capture group ie within '()' brackets.
+// console.log("dateStrReplace", dateStrReplace);
+
+
+
+
+//Online tool  for testing regular expressions : https://regex101.com/
+
+// '^' and '$' can only be used in the start and end of a string and cannot be used in between strings to match, so we use lookaheads for giving starting and ending in between strings
+// (?=) - Possitive Lookahead
+//(?<=) - Possitive Lookbehind
+//(?! ) - Negative Lookahead
+//(?<! ) - Negative Lookbehind
+
+let dateString = '11-10-2023';
+
+// let regex = /-\d+-/; //It will match also '-10-' in result and gives as result array
+
+//Using Lookahead and Lookbehind
+let regex = /(?<=-)\d+(?=-)/; //It will exactly match '10' and gives in result array
+
+
+const result = dateString.match(regex);
+console.log("Result : ", result);
+
+
+//Example for Negative Lookahead and Negative Lookbehind
+
+let phone = "(91)1234567890";
+
+//Matches numbers outside of (91)
+const phoneRegex = /(?<!\()\d+(?!\))/; // escape chractor '\' is used to represent '(' and ')' in string
+
+const phoneResult = phone.match(phoneRegex);
+console.log("Phone result : ", phoneResult);

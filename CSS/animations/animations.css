@@ -11,8 +11,8 @@
     /* animation-name: animation2; */
     animation-duration: 2s;
     animation-iteration-count: 1;
-    /* animation-fill-mode: forwards; Ends animation with first keyframe property */ 
-    /* animation-fill-mode: backwards; Ends animation with last keyframe property */
+    /* animation-fill-mode: forwards; Ends animation with last keyframe property */ 
+    /* animation-fill-mode: backwards; Ends animation with first keyframe property */
     /* animation-timing-function: ease-in; Starts animation slowly and ends fastly */
     /* animation-timing-function: ease-out; Starts animation fastly and ends slowly */
     /* animation-timing-function: ease-in-out; Starts and ends slowly */
