@@ -153,7 +153,6 @@ is always good
 
 
 
-
 //String replacing using regular expressions
 // let str5 = "a-b-c";
 
@@ -169,7 +168,6 @@ is always good
 
 // let dateStrReplace = dateStr.replace(/(\d{2})$/,'20$1');//gets '04' from dateStr and replace it as '2004', '$1' will get the value of first capture group ie within '()' brackets.
 // console.log("dateStrReplace", dateStrReplace);
-
 
 
 

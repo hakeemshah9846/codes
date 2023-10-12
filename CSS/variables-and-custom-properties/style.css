@@ -3,6 +3,7 @@
     --danger-color: red;
     --maxw: 333px;
 }
+
 .box{
     width:200px;
     height: 200px;
@@ -11,6 +12,7 @@
     box-shadow: 3px 3px var(--box-color);
     margin: 2px 9px;
 }
+
 .container{ 
     max-width: var(--maxw);
     margin: auto;

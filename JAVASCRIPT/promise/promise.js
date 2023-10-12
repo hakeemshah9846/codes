@@ -38,7 +38,7 @@ api.createOrder(cart, function() {
     api.proceedToPayment();
 });
 
-//We are blindly trusting createOrder api, if any bugs of if createOrder api is not written properly payment system will not work or works unappropriately causing multiple payments, or payment success wothout debiting any money, etc.
+//We are blindly trusting createOrder api, if any bugs of if createOrder api is not written properly payment system will not work or works unappropriately causing multiple payments, or payment success without debiting any money, etc.
 
 
 //Promises
@@ -59,8 +59,6 @@ p.then((message) => {
 .catch((message) => {
     console.log("Catch : ", message);
 });
-
-
 
 //Example
 function gamePlayCallback(callback, errorCallback) {

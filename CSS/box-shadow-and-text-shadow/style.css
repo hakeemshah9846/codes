@@ -18,7 +18,7 @@
     /* box-shadow: -7px -5px 10px 34px rgba(71, 172, 172, 0.5); */
     box-shadow: inset 3px 5px green;
 
-    box-shadow: 3px 5px green, 4px 6px red;
+    box-shadow: 3px 5px green, 5px 6px red;
 }
 .card h2{
     /* text-shadow: 3px 4px red; */
