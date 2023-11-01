@@ -6,14 +6,17 @@
 
 nav {
     display: flex;
-    justify-content: space-between;
-    margin: 0 3rem 0 3rem;
+    justify-content: center;
+    margin: 1rem 3rem 0 3rem;
+}
+
+.empty-container {
+    flex-grow: 1;
 }
 
 .left-section {
     list-style: none;
     display: flex;
-    border: 2px solid red;
     color: #0C3466;
     font-weight: bold;
 }
@@ -30,7 +33,6 @@ nav {
 .right-section {
     list-style: none;
     display: flex;
-    border: 2px solid blue;
     color: #0C3466;
     font-weight: bold;
 }
@@ -49,4 +51,50 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-wrap: nowrap;
+}
+
+.right-section .login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right-section .login .login-text {
+    font-size: larger;
+}
+
+.right-section .btn-nav {
+    padding : 8px 24px 8px 24px;
+    background-color: #2E844A;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: larger;
+    text-wrap: nowrap;
+}
+
+@media only screen and (max-width : 1300px){
+
+    .res-class {
+        display: none;
+    }
+
+}
+
+.after-nav {
+    width: 100%;
+    background-color: #032D60;
+    display: flex;
+    column-gap: 20px;;
+    justify-content: center;
+    align-items: center;
+    font-family : "ITC Avant Garde",system-ui,-apple-system,blinkmacsystemfont,"Segoe UI",roboto,"Helvetica Neue",arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-weight: 700;
+}
+
+.after-nav-text {
+    color: white;
+    margin: 13px 0px 13px 0px;
 }
