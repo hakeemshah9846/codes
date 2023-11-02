@@ -1,0 +1,19 @@
+header {
+    background-color: black;
+}
+
+.cstm-carousel {
+    /* border: 2px solid green; */
+    position: relative;
+}
+
+.cstm-caption {
+    position: relative;
+}
+.small-heading {
+    font-size: small;
+}
+
+.authors {
+    font-size: smaller;
+}

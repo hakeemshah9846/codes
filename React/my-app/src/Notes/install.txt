@@ -1,0 +1,48 @@
+Linux Mint is based on Ubuntu, so you can use the package manager apt to install Node.js and npm. Open your terminal and run the following commands to install Node.js and npm:
+
+sudo apt update
+sudo apt install nodejs
+sudo apt install npm
+
+
+After the installation is complete, you can verify the versions of Node.js and npm:
+
+node -v
+npm -v
+
+Create a New React Application:
+
+You can create a new React application using create-react-app. Open your terminal and run the following command:
+
+npx create-react-app my-react-app
+
+
+Replace my-react-app with the name of your project.
+
+Change Directory:
+1
+Navigate to your project directory using the cd command:
+
+cd my-react-app
+
+
+This will launch your default web browser, displaying your React app. It will also provide a development environment where your code changes will be automatically reflected in the browser.
+
+Edit and Build Your App:
+
+You can now edit your React application. Your main entry point is typically in the src directory, specifically the src/App.js file where you can modify your app's content.
+
+Install Additional Packages:
+
+Use npm install to add new packages to your project. For instance, if you want to install Axios for making HTTP requests, you can run:
+
+npm install axios
+
+
+Build for Production:
+
+When you're ready to create a production build of your React application, use the following command:
+
+npm run build
+
+This will generate an optimized, production-ready build of your app in the build directory.
