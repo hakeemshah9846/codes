@@ -35,8 +35,10 @@ function App() {
       // <UseMemoComponent/>
       // <ParentComponent/>
       // <MyComponentWithUpperCase text={"Hello world"}/>
+      // <AxiosComponent/>
     }
-    <AxiosComponent/>
+    <NestedRouting/>
+
     </div>
   );
 }
