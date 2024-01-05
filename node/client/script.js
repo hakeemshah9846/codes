@@ -14,24 +14,56 @@ let content = document.getElementById('content');
 let dataComponent = '';
 
 for(let i=0; i<parsed_user_data.length; i++) {
-    let id = parsed_user_data[i]._id;
+    // let edit_datas = {id : parsed_user_data[i]._id,name : parsed_user_data[i].name,email : parsed_user_data[i].email,password : parsed_user_data[i].password};
+    // let id = parsed_user_data[i]._id;
     let editTag = `<td value=${parsed_user_data[i]._id}>Edit</td>`;
     console.log("editTag : ", editTag);
     dataComponent = dataComponent + `
     <tr>
     <td>${parsed_user_data[i]._id}</td>
-    <td>${parsed_user_data[i].name}</td>
-    <td>${parsed_user_data[i].email}</td>
-    <td>${parsed_user_data[i].password}</td>
-    <td value=${parsed_user_data[i]._id}>Edit</td>
+    <td><input type="text" name="name" id="name-${parsed_user_data[i]._id}" value="${parsed_user_data[i].name}" disabled="true"></td>
+    <td><input type="email" name="email" id="email-${parsed_user_data[i]._id}" value="${parsed_user_data[i].email}" disabled="true"></td>
+    <td><input type="password" name="password" id="password-${parsed_user_data[i]._id}" value="${parsed_user_data[i].password}" disabled="true"></td>
+    <td><button onclick="handleEdit('${parsed_user_data[i]._id}')">Edit</button></td>
+    <td><button onclick="handleSave('${parsed_user_data[i]._id}')">Save</button></td>
     </tr>
     `;
 }
 
 console.log("dataComponent : ", dataComponent);
 
+console.log("content : ", content);
 content.innerHTML = dataComponent;
 
 }
 
 getData();
+
+function handleEdit(id) {
+    console.log("id : ", id);
+
+    let name = document.getElementById(`name-${id}`);
+    name.disabled = false;
+
+    let email = document.getElementById(`email-${id}`);
+    email.disabled = false;
+
+    let password = document.getElementById(`password-${id}`);
+    password.disabled = false;
+
+}
+
+
+function handleSave(id) {
+    console.log("Id : ", id);
+
+    let name = document.getElementById(`name-${id}`).value;
+    console.log("name : ", name);
+
+    let email = document.getElementById(`email-${id}`).value;
+    console.log("email : ", email);
+
+    let password = document.getElementById(`password-${id}`).value;
+    console.log("password : ", password);
+
+}

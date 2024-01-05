@@ -46,6 +46,16 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(200,{"Content-Type" : "text/css"});
     res.end(fs.readFileSync("../client/style.css"));
     
+  }else if(parsedUrl.pathname === "/edit_user.html") {
+
+    res.writeHead(200,{"Content-Type" : "text/html"});
+    res.end(fs.readFileSync("../client/edit_user.html"));
+    
+  }else if(parsedUrl.pathname === "/edit_user.js") {
+
+    res.writeHead(200,{"Content-Type" : "text/javascript"});
+    res.end(fs.readFileSync("../client/edit_user.js"));
+    
   }
 
   // Handle form submission on POST request to /submit
@@ -55,6 +65,7 @@ const server = http.createServer(async (req, res) => {
 
     // Collect data as it comes in chunks
     req.on("data", (chunk) => {
+      console.log("Reached data event emmitter");
       console.log("chunk : ", chunk);
       console.log(`chunk.toString() : ${chunk} : `, chunk.toString());
       body += chunk.toString();
@@ -135,6 +146,24 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(200,{"Content-Type" : "text/json"});
     res.end(jsonFormData);
   }
+
+    //Handle Get request to retrieve form data
+    if(req.method === "GET" && parsedUrl.pathname === "/getSingleUserData/:id") {
+
+      let id = req.params.id;
+      console.log("id : ", id);
+
+      //Retrieve form data from the collection
+      const formDataArray = await collection.find().toArray();
+      console.log("formDataArray : ", formDataArray);
+  
+      //Convert formDataArray to string
+      const jsonFormData = JSON.stringify(formDataArray);
+      console.log("jsonFormData : ", jsonFormData);
+  
+      res.writeHead(200,{"Content-Type" : "text/json"});
+      res.end(jsonFormData);
+    }
 
 });
 
