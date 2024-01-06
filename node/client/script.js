@@ -54,7 +54,7 @@ function handleEdit(id) {
 }
 
 
-function handleSave(id) {
+async function handleSave(id) {
     console.log("Id : ", id);
 
     let name = document.getElementById(`name-${id}`).value;
@@ -65,5 +65,27 @@ function handleSave(id) {
 
     let password = document.getElementById(`password-${id}`).value;
     console.log("password : ", password);
+
+    let data = {
+        id,
+        name,
+        email,
+        password
+    }
+
+    let json_data = JSON.stringify(data);
+    console.log("json_data : ", json_data);
+
+    let response = await fetch(`/editData`,{
+        method : "PUT",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body : json_data,
+    }
+    )
+
+    let response_data = response.text();
+    return response_data;
 
 }

@@ -2,7 +2,7 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs');
 const querystring = require('querystring');
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const { error } = require('console');
 const port = 3000;
 
@@ -163,6 +163,60 @@ const server = http.createServer(async (req, res) => {
   
       res.writeHead(200,{"Content-Type" : "text/json"});
       res.end(jsonFormData);
+    }
+
+    if(req.method === "PUT" && parsedUrl.pathname === "/editData") {
+
+      let body;
+      let id;
+      let updateDatas;
+      req.on('data', (chunks)=> {
+        console.log("chunks : ", chunks);
+        let datas = chunks.toString();
+        console.log("datas : ", datas);
+        body = JSON.parse(datas);
+        console.log("body : ", body);
+
+        id = body.id;
+        console.log("id : ", id);
+        console.log("type (id) : ", typeof(id))
+        //Converting string id to mongodb object id
+        let _id = new ObjectId(id);
+        console.log("_id : ", _id);
+        console.log("type (_id) : ", typeof(_id));
+
+        updateDatas = {
+          name : body.name,
+          email : body.email,
+          password : body.password,
+        }
+
+        console.log("updateDatas : ", updateDatas);
+
+      });
+
+      req.on('end',async ()=> {
+
+        console.log("id : ", id);
+        console.log("typeOf(id) : ", typeof(id))
+        //Converting string id to mongodb object id
+        let _id = new ObjectId(id);
+        console.log("_id : ", _id);
+        console.log("type (_id) : ", typeof(_id));
+
+        await collection.updateOne({_id},{$set : updateDatas})
+          .then((message)=> {
+            console.log("Document updated successfully : ", message);
+            res.writeHead(200,{"Content-Type" : "text/plain"});
+            res.end("Form submitted successfully");
+          })
+          .catch((error)=> {
+            console.log("Document not updated : ", error);
+            res.writeHead(200,{"Content-Type" : "text/plain"});
+            res.end("Failed");
+          })
+      })
+
     }
 
 });
