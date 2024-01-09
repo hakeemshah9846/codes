@@ -26,6 +26,7 @@ for(let i=0; i<parsed_user_data.length; i++) {
     <td><input type="password" name="password" id="password-${parsed_user_data[i]._id}" value="${parsed_user_data[i].password}" disabled="true"></td>
     <td><button onclick="handleEdit('${parsed_user_data[i]._id}')">Edit</button></td>
     <td><button onclick="handleSave('${parsed_user_data[i]._id}')">Save</button></td>
+    <td><button onclick="handleDelete('${parsed_user_data[i]._id}')">Delete</button></td>
     </tr>
     `;
 }
@@ -85,7 +86,36 @@ async function handleSave(id) {
     }
     )
 
-    let response_data = response.text();
+    let response_data = await response.text();
+    console.log("response_data : ", response_data);
+
+    if(response_data === "success") {
+        alert("Updation Success");
+    }else {
+        alert("Updation failed");
+    }
     return response_data;
 
+}
+
+async function handleDelete(id) {
+    console.log("id : ", id);
+
+     let response = await fetch("http://localhost:3000/deleteData",{
+        method : "DELETE",
+        headers : {
+            "Content-Type" : "text/plain"
+        },
+        body : id,
+    });
+
+    let parsed_response = await response.text();
+    console.log("parsed_response : ", parsed_response);
+
+    if(parsed_response === "success") {
+        alert("Deletion Success")
+    }else {
+        alert("Deletion failed");
+    }
+    
 }

@@ -208,15 +208,43 @@ const server = http.createServer(async (req, res) => {
           .then((message)=> {
             console.log("Document updated successfully : ", message);
             res.writeHead(200,{"Content-Type" : "text/plain"});
-            res.end("Form submitted successfully");
+            res.end("success");
           })
           .catch((error)=> {
             console.log("Document not updated : ", error);
             res.writeHead(200,{"Content-Type" : "text/plain"});
-            res.end("Failed");
+            res.end("failed");
           })
       })
 
+    }
+
+    if(req.method === "DELETE" && parsedUrl.pathname === "/deleteData") {
+
+      let body = "";
+      req.on('data', (chunks) => {
+        console.log("chunks : ", chunks);
+        body = body + chunks.toString();
+        console.log("body : ", body);
+      });
+
+      req.on('end',async()=> {
+        let _id = new ObjectId(body);
+        console.log("_id : ", _id);
+
+        await collection.deleteOne({_id})
+          .then((messaage) => {
+            console.log("Document deleted successfully : ", messaage);
+            res.writeHead(200, {"Content-Type" : "text/plain"});
+            res.end("success");
+          })
+          .catch((error) => {
+            console.log("Document deletion failed");
+            res.writeHead(200, {"Content-Type" : "text/plain"});
+            res.end("failed");
+
+          })
+      })
     }
 
 });
