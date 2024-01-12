@@ -73,6 +73,8 @@ db.users.find({age : {$lt : 10}}) //Gets all the users whose age ess than 10
 
 db.users.find({age : {$lte : 10}}) //Gets all the users whose age ess than or equal to 10
 
+
+
 db.users.find({name : {$in : ["Riya","John"]}}) //Get all the users with the name of "Riya" and "John"
 
 db.users.find({name : {$nin : ["Riya","John"]}}) //Get all the users that does not have the name of "Riya" and "John"

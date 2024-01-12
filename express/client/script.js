@@ -2,7 +2,7 @@ console.log("Hello javascript");
 
 async function getData() {
 
-let user_data = await fetch('http://localhost:3000/getFormData');
+let user_data = await fetch('http://localhost:3000/getData');
 console.log("user_data : ", user_data.response);
 console.log("typeOf(user_data) : ", typeof(user_data));
 
