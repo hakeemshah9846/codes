@@ -2,7 +2,9 @@ console.log("Hello javascript");
 
 async function getData() {
 
-let user_data = await fetch('http://localhost:3000/getData');
+    console.log("Reached getData...");
+
+let user_data = await fetch('http://localhost:5000/getData');
 console.log("user_data : ", user_data.response);
 console.log("typeOf(user_data) : ", typeof(user_data));
 
@@ -38,7 +40,7 @@ content.innerHTML = dataComponent;
 
 }
 
-getData();
+// getData();
 
 function handleEdit(id) {
     console.log("id : ", id);
@@ -118,4 +120,44 @@ async function handleDelete(id) {
         alert("Deletion failed");
     }
     
+}
+
+
+//Validations
+async function submitForm() {
+    console.log("Reached SubmitForm");
+
+    let name = document.getElementById('name').value;
+    console.log("name : ", name);
+
+    let email = document.getElementById('email').value;
+    console.log("email : ", email);
+
+    let password = document.getElementById('password').value;
+    console.log("password : ", password);
+
+    let data = {
+        name,
+        email,
+        password,
+    }
+
+    let json_data = JSON.stringify(data);
+    console.log("json_data : ", json_data);
+
+    let response = await fetch('/submit',{
+        method : "POST",
+        headers : {
+            "Content-Type" : "application/json",
+        },
+        body : json_data,
+    });
+
+    let parsed_response = await response.text();
+
+    if(parsed_response === "success") {
+        alert("Form submitted successfully");
+    }else {
+        alert("Form submission failed");
+    }
 }

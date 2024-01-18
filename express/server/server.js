@@ -17,6 +17,14 @@ app.use(express.urlencoded({ extended: true }));
 //Middleware to parse JSON
 app.use(express.json());
 
+//Test api
+app.get('/test',(req,res,next)=> {
+  // res.status(200).send("Success");
+  next();
+},(req,res)=> {
+  res.status(200).send("success1");
+});
+
 //Route to handle form submission
 app.post("/submit", (req, res) => {
   const body = req.body;
@@ -30,7 +38,7 @@ app.post("/submit", (req, res) => {
   if (!fs.existsSync(folderPath)) {
     fs.mkdirSync(folderPath, { recursive: true });
   }
-
+  
   //Get datas from the file
   const fileContent = fs.readFileSync(filePath, "utf-8");
   console.log("fileContent : ", fileContent);
@@ -50,10 +58,10 @@ app.post("/submit", (req, res) => {
     fs.writeFile(filePath, data, (err) => {
       if (err) {
         console.log("err : ", error);
-        res.status(400).send("Failed");
+        res.status(400).send("failed");
       } else {
         console.log("Success");
-        res.status(200).send("Success");
+        res.status(200).send("success");
       }
     });
   } else {
@@ -70,11 +78,11 @@ app.post("/submit", (req, res) => {
     fs.writeFile(filePath, updatedDatas, (err) => {
       if (err) {
         console.log("err : ", error);
-        res.status(400).send("Failed");
+        res.status(400).send("failed");
       } else {
         console.log("Success");
           //Also save to a database
-        res.status(200).send("Success");
+        res.status(200).send("success");
       }
     });
   }
@@ -92,7 +100,7 @@ app.get('/getData',(req, res)=> {
     console.log("fileContent : ", fileContent);
 
     res.status(200).send(fileContent);
-})
+});
 
 app.listen(port, () => {
   console.log(`Server runnng at http://localhost:${port}`);

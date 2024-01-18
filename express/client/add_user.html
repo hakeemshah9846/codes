@@ -6,12 +6,14 @@
     <title>Add user</title>
 </head>
 <body>
-    <form method="post" action="/submit">
+    <form  id="myForm">
         <input type="text" name="name" id="name" placeholder="Enter your name">
         <input type="email" name="email" id="email" placeholder="Enter your email">
         <input type="password" name="password" id="password" placeholder="Enter your password">
-        <input type="submit">
+        <!-- <input type="submit" onclick="validateForm()"> -->
+        <button type="button" onclick="submitForm()">Submit</button>
     </form>
         
+    <script src="script.js"></script>
 </body>
 </html>
