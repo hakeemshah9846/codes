@@ -130,6 +130,17 @@ async function submitForm() {
     let name = document.getElementById('name').value;
     console.log("name : ", name);
 
+    //Validate name
+    let nameRegex = /^[A-Za-z]{2,30}( [A-Za-z]{2,30})?$/
+    let isNameValid = nameRegex.test(name);
+    console.log("isNameValid : ", isNameValid);
+
+    let name_message = document.getElementById('name-error');
+    if(!isNameValid) {
+        alert("Name not valid");
+        return;
+    }
+
     let email = document.getElementById('email').value;
     console.log("email : ", email);
 
@@ -141,6 +152,7 @@ async function submitForm() {
         email,
         password,
     }
+
 
     let json_data = JSON.stringify(data);
     console.log("json_data : ", json_data);
@@ -160,4 +172,32 @@ async function submitForm() {
     }else {
         alert("Form submission failed");
     }
+}
+
+function validateName() {
+    let name = document.getElementById('name').value;
+    console.log("name : ", name);
+
+    let name_message = document.getElementById('name-error');
+    console.log("name_message : ", name_message);
+
+    let name_regex = /[a-zA-z]{2,30}( [a-zA-z]{2,30})?$/;
+    let isNameValid = name_regex.test(name);
+    console.log("isNameValid : ", isNameValid);
+
+    if(!isNameValid) {
+        name_message.innerHTML = "Invallid Name";
+        return;
+    }else {
+        name_message.innerHTML = "";
+        return;
+    }
+}
+
+function validateEmail() {
+    let email = document.getElementById('email').value;
+    console.log("email : ", email);
+
+    let email_message = document.getElementById('email-error');
+    console.log("email_message : ", email_message);
 }
