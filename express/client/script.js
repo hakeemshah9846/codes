@@ -200,4 +200,7 @@ function validateEmail() {
 
     let email_message = document.getElementById('email-error');
     console.log("email_message : ", email_message);
+
+    let email_regex = /^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.{1}[a-zA-Z]{2,}$/;
+
 }
