@@ -61,7 +61,13 @@ exports.signup = async function(req, res) {
 
 }
 
-exports.getData = function (req,res) {
-    res.status(200).send("Success");
+exports.getData = async function (req,res) {
+    let user_datas = await users.find().select('-__v');
+    let response = success_function({
+        statusCode : 200,
+        data : user_datas,
+        message : "User datas found successfully",
+    });
+    res.status(response.statusCode).send(response);
     return;
 }

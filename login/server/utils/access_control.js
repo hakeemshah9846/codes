@@ -29,13 +29,14 @@ exports.accessControl = function (req, res, next) {
                     let user = await users.findOne({_id : user_id});
                     console.log("user : ", user);
                     if(!user) {
-                        let response = {
+                        let response = error_function({
                             statusCode : 400,
                             message : "Login user not found",
-                        };
+                        });
                         res.status(response.statusCode).send(response);
                         return;
                     }else {
+                        req.user_id = user._id;
                         next();
                     }
                 }

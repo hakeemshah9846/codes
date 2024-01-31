@@ -6,7 +6,7 @@ console.log("Reached getData...");
 let token = localStorage.getItem('jwt');
 console.log("JWT token from localstorage : ", localStorage.getItem('jwt'));
 
-let user_data = await fetch('http://localhost:5001/getData',{
+let user_data = await fetch('http://localhost:5001/users',{
     method : "GET",
     headers : {
         'authorization' : `Bearer ${token}`,
@@ -15,7 +15,7 @@ let user_data = await fetch('http://localhost:5001/getData',{
 console.log("user_data : ", user_data.response);
 console.log("typeOf(user_data) : ", typeof(user_data));
 
-let parsed_user_data = await user_data.json();
+let parsed_user_data = (await user_data.json()).data;
 console.log("parsed_user_data : ", parsed_user_data);
 console.log("typeOf(parsed_user_data) : ", typeof(parsed_user_data));
 
@@ -164,7 +164,7 @@ async function submitForm() {
     let json_data = JSON.stringify(data);
     console.log("json_data : ", json_data);
 
-    let response = await fetch('http://localhost:5001/submit',{
+    let response = await fetch('http://localhost:5001/user',{
         method : "POST",
         headers : {
             "Content-Type" : "application/json",
