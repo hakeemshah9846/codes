@@ -256,10 +256,15 @@ async function Login() {
         console.log("token : ", parsed_response.data);
         alert("Login Successful");
         localStorage.setItem('jwt',parsed_response.data);
-        window.location.href = "get_users.html";
+        window.location.href = "profile.html";
         return;
     }else {
         alert("Login failed");
         return;
     }
+}
+
+
+function getProfile() {
+    console.log("Reached getProfile");
 }

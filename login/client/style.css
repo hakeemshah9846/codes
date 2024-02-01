@@ -46,3 +46,27 @@ input {
 .error {
     color: red;
 }
+
+#profile_form {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#profile_form input {
+    width: 50%;
+    margin-top: 8px;
+}
+
+#profile_btns {
+    display: flex;
+    margin: 12px;
+}
+
+#profile_btns button {
+    margin : 4px;
+    padding: 8px;
+}

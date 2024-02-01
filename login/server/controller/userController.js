@@ -90,3 +90,15 @@ exports.getData = async function (req,res) {
     res.status(response.statusCode).send(response);
     return;
 }
+
+exports.editData = async function (req, res)  {
+
+}
+
+exports.deleteData = async function (req, res)  {
+
+}
+
+exports.getProfileData = async function (req, res) {
+
+}
