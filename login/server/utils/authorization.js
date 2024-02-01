@@ -5,7 +5,7 @@ let users = require('../db/models/users');
 const dotenv = require('dotenv');
 dotenv.config();
 
-exports.accessControl = function (req, res, next) {
+exports.checkLogin = function (req, res, next) {
     try {
         let token = req.headers['authorization'].split(' ')[1];
         console.log("token : ", token);
@@ -14,7 +14,7 @@ exports.accessControl = function (req, res, next) {
                 statusCode : 400,
                 message : "Invalid token",
             });
-            res.statusCode(response.statusCode).send(response);
+            res.status(response.statusCode).send(response);
             return;
         }else {
             jwt.verify(token, process.env.PRIVATE_KEY, async function(err, decoded) {
@@ -44,5 +44,10 @@ exports.accessControl = function (req, res, next) {
         }
     } catch (error) {
         console.log("error : ", error);
+        let response = error_function({
+            statusCode : 400,
+            message : error.message?error.message:error,
+        });
+        res.status(response.statusCode).send(response);
     }
 }

@@ -2,15 +2,30 @@ const users = require('../db/models/users');
 const success_function = require('../utils/response-handler').success_function;
 const error_function  = require('../utils/response-handler').error_function;
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 exports.signup = async function(req, res) {
 
     try {
-        const datas = req.body;
-        console.log("datas : ", datas);
+
+        const name = req.body.name;
+        console.log("name : ", name);
+
+        const email = req.body.email;
+        console.log("email : ", email);
+
+        const password = req.body.password;
+        console.log("password : ", password);
+
+        //Generating salt using bcrypt
+        const salt = await bcrypt.genSalt(10);
+        console.log("salt : ", salt);
+
+        const hashed_password = bcrypt.hashSync(password, salt);
+        console.log("hashed_password : ", hashed_password);
 
         //Validate user exists or not
-        const isUserExist = await users.findOne({email : datas.email});
+        const isUserExist = await users.findOne({email});
 
         if(isUserExist) {
             const response = error_function({
@@ -22,7 +37,11 @@ exports.signup = async function(req, res) {
             return;
         }
     
-       const new_user = await users.create(req.body);
+       const new_user = await users.create({
+        name,
+        email,
+        password : hashed_password,
+       });
     
        if(new_user) {
 

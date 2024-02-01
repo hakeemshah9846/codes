@@ -2,6 +2,7 @@ const users = require('../db/models/users');
 const success_function = require('../utils/response-handler').success_function;
 const error_function = require('../utils/response-handler').error_function;
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -22,26 +23,30 @@ exports.login = async function(req, res) {
             console.log("user_id : ", user_id);
 
             //Check password matches db_password
-            if(password === db_password) {
-                let access_token = jwt.sign({user_id},process.env.PRIVATE_KEY,{expiresIn : "10d"});
-                console.log("access_token : ", access_token);
+            bcrypt.compare(password, db_password,(err, auth) => {
+                if(auth === true) {
+                    let access_token = jwt.sign({user_id},process.env.PRIVATE_KEY,{expiresIn : "10d"});
+                    console.log("access_token : ", access_token);
+    
+                    let response = success_function({
+                        statusCode : 200,
+                        data : access_token,
+                        message : "Login Successful",
+                    });
+    
+                    res.status(response.statusCode).send(response);
+                    return;
+                }else {
+                    console.log("auth error : ", err);
+                    let response = error_function({
+                        statusCode : 200,
+                        message : "Invalid password",
+                    });
+                    res.status(response.statusCode).send(response);
+                    return;
+                }
+            })
 
-                let response = success_function({
-                    statusCode : 200,
-                    data : access_token,
-                    message : "Login Successful",
-                });
-
-                res.status(response.statusCode).send(response);
-                return;
-            }else {
-                let response = error_function({
-                    statusCode : 200,
-                    message : "Invalid password",
-                });
-                res.status(response.statusCode).send(response);
-                return;
-            }
         }else {
             let response = error_function({
                 statusCode : 400,
