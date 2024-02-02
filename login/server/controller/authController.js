@@ -25,6 +25,7 @@ exports.login = async function(req, res) {
             //Check password matches db_password
             bcrypt.compare(password, db_password,(err, auth) => {
                 if(auth === true) {
+                    //openssl genpkey -algorithm RSA -out private_key.pem -aes256
                     let access_token = jwt.sign({user_id},process.env.PRIVATE_KEY,{expiresIn : "10d"});
                     console.log("access_token : ", access_token);
     
