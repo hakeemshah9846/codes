@@ -47,6 +47,7 @@ content.innerHTML = dataComponent;
 
 }
 
+
 // getData();
 
 function handleEdit(id) {
@@ -129,6 +130,25 @@ async function handleDelete(id) {
     
 }
 
+let img_value = null;
+
+function handleImageChange() {
+    
+    let img_input = document.getElementById('image');
+
+    if(img_input.files && img_input.files[0]) {
+         let reader = new FileReader();
+
+         reader.readAsDataURL(img_input.files[0]);
+
+         reader.onload = function (e) {
+            img_value = e.target.result;
+            // console.log("Selected image in fileReader onload : ", img_value);
+         }
+
+    }
+}
+
 
 //Validations
 async function submitForm() {
@@ -154,12 +174,14 @@ async function submitForm() {
     let password = document.getElementById('password').value;
     console.log("password : ", password);
 
+
+    console.log("img_value from submitForm : ", img_value);
+
     let data = {
         name,
         email,
         password,
-    }
-
+    };
 
     let json_data = JSON.stringify(data);
     console.log("json_data : ", json_data);
@@ -256,7 +278,7 @@ async function Login() {
         console.log("token : ", parsed_response.data);
         alert("Login Successful");
         localStorage.setItem('jwt',parsed_response.data);
-        window.location.href = "profile.html";
+        window.location.href = "get_users.html";
         return;
     }else {
         alert("Login failed");
@@ -264,7 +286,13 @@ async function Login() {
     }
 }
 
-
-function getProfile() {
+async function getProfile() {
     console.log("Reached getProfile");
+    
+    let name = document.getElementById('profile_name');
+    let email = document.getElementById('profile_email');
+    let password = document.getElementById('profile_password');
+
+    let response = await fetch('http://localhost:5001/users/${}')
+
 }
