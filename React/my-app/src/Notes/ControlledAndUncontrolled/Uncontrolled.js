@@ -19,5 +19,4 @@ function UncontrolledInput() {
 
 export default UncontrolledInput;
 
-
 // In this functional component, we use the useRef hook to create a reference to the input element (inputRef). The input maintains its own state, and when the button is clicked, we access the input's value using the ref. React is not directly controlling the input's value in this case.

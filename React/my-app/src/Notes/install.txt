@@ -25,7 +25,6 @@ Navigate to your project directory using the cd command:
 
 cd my-react-app
 
-
 This will launch your default web browser, displaying your React app. It will also provide a development environment where your code changes will be automatically reflected in the browser.
 
 Edit and Build Your App:

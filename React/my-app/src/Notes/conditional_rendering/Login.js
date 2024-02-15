@@ -2,7 +2,7 @@
 
 // Example 1: Using a Ternary Operator for Conditional Rendering
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function Login() {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -19,6 +19,3 @@ function Login() {
 }
 
 export default Login;
-
-
-
