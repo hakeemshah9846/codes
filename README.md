@@ -37,3 +37,9 @@ I am a fullstack developer who loves to code and solve problems!
 <a href="https://github.com/hakeemshah9846" align="left"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=hakeemshah9846&langs_count=10&title_color=0891b2&text_color=ffffff&icon_color=0891b2&bg_color=1c1917&hide_border=true&locale=en&custom_title=Top%20%Languages" alt="Top Languages" /></a>
 
 ### How to run this project
+<ul>
+  <li>git clone url</li>
+  <li>cd project-dir</li>
+  <li>npm install</li>
+  <li>npm run dev</li>
+</ul>
