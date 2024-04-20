@@ -34,7 +34,6 @@ export default function Login() {
 
   const handleSubmit = async (values, { setErrors, resetForm }) => {
     try {
-      
 
       console.log("values::",values)
       const response = await axios.post(`${HOSTED_SERVER_URL}/login`,values);
@@ -64,7 +63,7 @@ export default function Login() {
         localStorage.setItem('employeeId', employeeId);
         console.log("Logged in employee id:", employeeId);
         const resetPassword=response.data.Resetpassword;
-        console.log("password reset:",resetPassword)
+        console.log("password reset:",resetPassword);
         
         if(resetPassword){
           navigate('/employee/dashboard')

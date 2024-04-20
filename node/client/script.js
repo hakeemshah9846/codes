@@ -3,7 +3,7 @@ console.log("Hello javascript");
 async function getData() {
 
 let user_data = await fetch('http://localhost:3000/getFormData');
-console.log("user_data : ", user_data.response);
+console.log("user_data : ", user_data.response);//Network response
 console.log("typeOf(user_data) : ", typeof(user_data));
 
 let parsed_user_data = await user_data.json();
@@ -38,7 +38,7 @@ content.innerHTML = dataComponent;
 
 }
 
-getData();
+// getData();
 
 function handleEdit(id) {
     console.log("id : ", id);

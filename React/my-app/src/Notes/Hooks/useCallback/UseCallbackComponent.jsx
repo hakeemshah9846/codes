@@ -4,6 +4,7 @@ function UseCallbackComponent() {
   const [count, setCount] = useState(0);
 
   // Define a callback function using useCallback
+  //useCallback memoizes the callback function. It returns a memoized version of the callback that only changes if one of the dependencies passed to useCallback has changed.
   const handleClick = useCallback(() => {
     setCount(count + 1);
   }, [count]);
