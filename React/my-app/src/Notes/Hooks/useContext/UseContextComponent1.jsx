@@ -22,7 +22,6 @@ function ThemeSelector() {
   );
 }
 
-
 function UseContextComponent1() {
   // Use state to manage the dynamic context value
   const [theme, setTheme] = useState('light');

@@ -17,8 +17,6 @@ import ResetPassword from './components/ResetPassword'
 import Forgot from './components/Fogot'
 
 
-
-
 function App() {
   // const [count, setCount] = useState(0)
 
